@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shyam Sundar — Bioinformatician</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #142035;
+    --navy-light: #1E3050;
+    --sage: #7BAE8F;
+    --sage-dim: #5a8a6e;
+    --cream: #F0EEE9;
+    --cream-dim: #C8C4BB;
+    --white: #FAFAF8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(10, 22, 40, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(123, 174, 143, 0.12);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--cream-dim);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--sage); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 7rem 4rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-text {}
+
+  .hero-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--sage);
+    letter-spacing: 0.12em;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1.75rem;
+    font-weight: 400;
+  }
+
+  .hero-desc {
+    color: var(--cream-dim);
+    font-size: 0.98rem;
+    line-height: 1.85;
+    max-width: 44ch;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    background: var(--sage);
+    color: var(--navy);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    border-radius: 2px;
+  }
+
+  .btn-primary:hover {
+    background: #8fc4a3;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border: 1px solid rgba(123,174,143,0.4);
+    color: var(--sage);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    border-radius: 2px;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--sage);
+    color: #8fc4a3;
+  }
+
+  /* HERO RIGHT — contact card */
+  .hero-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(123,174,143,0.14);
+    border-radius: 4px;
+    padding: 2.5rem;
+  }
+
+  .hero-card-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-card-role {
+    font-size: 0.78rem;
+    color: var(--sage);
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+
+  .contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-list li a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--cream-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+    word-break: break-all;
+  }
+
+  .contact-list li a:hover { color: var(--sage); }
+
+  .c-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(123,174,143,0.12);
+    border-radius: 2px;
+  }
+
+  .c-icon svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    fill: var(--sage);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(123,174,143,0.1);
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--sage);
+    letter-spacing: 0.14em;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    flex: 1;
+    max-width: 3rem;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    color: var(--white);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    line-height: 1.15;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-body p {
+    color: var(--cream-dim);
+    font-size: 0.95rem;
+    line-height: 1.9;
+    margin-bottom: 1.25rem;
+    max-width: 60ch;
+  }
+
+  .about-body p strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  /* SKILLS PANEL */
+  .skills-panel {
+    background: var(--navy-mid);
+    border: 1px solid rgba(123,174,143,0.12);
+    border-radius: 4px;
+    padding: 2rem;
+  }
+
+  .skills-panel h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(123,174,143,0.25);
+    color: var(--sage);
+    border-radius: 2px;
+  }
+
+  .detail-row {
+    font-size: 0.8rem;
+    color: var(--cream-dim);
+    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .detail-row span:first-child {
+    color: var(--cream);
+    font-weight: 500;
+    min-width: 5rem;
+    flex-shrink: 0;
+  }
+
+  /* PROJECTS */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .project-item {
+    border-top: 1px solid rgba(123,174,143,0.1);
+    padding: 2.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+    transition: background 0.2s;
+  }
+
+  .project-item:last-child {
+    border-bottom: 1px solid rgba(123,174,143,0.1);
+  }
+
+  .project-meta {
+    padding-top: 0.15rem;
+  }
+
+  .project-index {
+    font-size: 0.68rem;
+    color: var(--sage);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .project-tools {
+    margin-top: 0.75rem;
+    font-size: 0.7rem;
+    color: var(--cream-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .project-body {}
+
+  .project-body ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .project-body ul li {
+    font-size: 0.88rem;
+    color: var(--cream-dim);
+    line-height: 1.65;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .project-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 0.35rem;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--sage);
+    text-decoration: none;
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 0.65rem; }
+
+  /* QUOTE */
+  .quote-section {
+    background: var(--navy-mid);
+    border-left: 2px solid var(--sage);
+    padding: 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto 0;
+  }
+
+  .quote-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    color: var(--cream);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 55ch;
+    margin-bottom: 1rem;
+  }
+
+  .quote-attr {
+    font-size: 0.78rem;
+    color: var(--sage);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(123,174,143,0.1);
+    padding: 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--cream-dim);
+  }
+
+  .footer-info {
+    font-size: 0.75rem;
+    color: rgba(200,196,187,0.5);
+    line-height: 1.6;
+    text-align: right;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 800px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero-inner, .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .project-item { grid-template-columns: 1fr; gap: 1rem; }
+    .quote-section { padding: 2.5rem 1.5rem; }
+    footer { padding: 2.5rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    .footer-info { text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Shyam Sundar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="mailto:shyamsundarbiotech@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-tag">Bioinformatician &amp; Research Analyst</p>
+      <h1>Shyam<br>Sundar D.</h1>
+      <p class="hero-desc">
+        Bridging biotechnology and data science — from phytochemical research and MSME-funded biomedical engineering to cloud-based LLM pipelines and academic data infrastructure.
+      </p>
+      <div class="hero-cta-row">
+        <a href="https://drive.google.com/file/d/1t-_2Th6wuvOLn5_yAqskmGE3uNskBND9/view?usp=sharing" target="_blank" class="btn-primary">View CV</a>
+        <a href="#projects" class="btn-ghost">See Projects</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <p class="hero-card-name">Shyam Sundar</p>
+      <p class="hero-card-role">Research Analyst · Aditya Softserv, Bengaluru</p>
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:shyamsundarbiotech@gmail.com">
+            <span class="c-icon">
+              <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 5A1.5 1.5 0 014 3.5h12A1.5 1.5 0 0117.5 5v10A1.5 1.5 0 0116 16.5H4A1.5 1.5 0 012.5 15V5zm1.5 0v.217l6 4.8 6-4.8V5H4zm0 1.717V15h12V6.717L10 11.5 4 6.717z"/></svg>
+            </span>
+            shyamsundarbiotech@gmail.com
+          </a>
+        </li>
+        <li>
+          <a href="https://orcid.org/0009-0008-5270-2780" target="_blank">
+            <span class="c-icon">
+              <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 1.5a6.5 6.5 0 110 13 6.5 6.5 0 010-13zm-1 3v7h2V6.5H9zm1-1a1 1 0 100-2 1 1 0 000 2z"/></svg>
+            </span>
+            ORCID · 0009-0008-5270-2780
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/shyam-sundar-d/" target="_blank">
+            <span class="c-icon">
+              <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M16 3H4a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM7.5 15H5.5V8.5h2V15zm-1-7.5a1 1 0 110-2 1 1 0 010 2zm9 7.5H13.5v-3.5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5V15H8.5V8.5H10v.9c.47-.65 1.2-1.05 2-.9 1.38.12 2.5 1.26 2.5 2.64V15z"/></svg>
+            </span>
+            LinkedIn · Shyam Sundar
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/Shyam-2003" target="_blank">
+            <span class="c-icon">
+              <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2C5.58 2 2 5.67 2 10.19c0 3.62 2.29 6.69 5.47 7.78.4.07.55-.18.55-.39v-1.38c-2.22.5-2.69-1.1-2.69-1.1-.36-.95-.89-1.2-.89-1.2-.73-.51.05-.5.05-.5.8.06 1.22.85 1.22.85.71 1.25 1.87.89 2.33.68.07-.53.28-.89.5-1.09-1.77-.21-3.63-.91-3.63-4.05 0-.9.31-1.63.82-2.2-.08-.21-.36-1.05.08-2.18 0 0 .67-.22 2.2.84a7.5 7.5 0 012-.28c.68 0 1.36.09 2 .28 1.52-1.06 2.2-.84 2.2-.84.44 1.13.16 1.97.08 2.18.51.57.82 1.3.82 2.2 0 3.15-1.87 3.84-3.65 4.04.29.26.54.76.54 1.52v2.26c0 .21.14.47.55.39C15.71 16.88 18 13.81 18 10.19 18 5.67 14.42 2 10 2z"/></svg>
+            </span>
+            GitHub · Shyam-2003
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-eyebrow">Background</p>
+  <h2>About</h2>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>
+        Shyam Sundar D is a <strong>Research Analyst at Aditya Softserv, Bengaluru</strong>, with a strong background in data analysis, research methodologies, and statistical tools.
+      </p>
+      <p>
+        He holds a <strong>B.Tech in Biotechnology</strong> from Sethu Institute of Technology (CGPA: 8.5), with professional experience spanning a Project Internship at <strong>ICAR-Sugarcane Breeding Institute</strong> and a Production Internship at Annai Agri Tech.
+      </p>
+      <p>
+        His technical expertise covers process optimization, product development, data visualization, and tools like <strong>R Studio</strong> and <strong>UCSF Chimera</strong>. He has presented research on semi-automated nano callipers and extraterrestrial studies via mass spectrometry, and holds certifications in digital marketing and bioinformatics with Python.
+      </p>
+      <p style="margin-top: 1.75rem;">
+        <a href="https://drive.google.com/file/d/1t-_2Th6wuvOLn5_yAqskmGE3uNskBND9/view?usp=sharing" class="btn-primary" target="_blank">Download CV</a>
+      </p>
+    </div>
+
+    <div>
+      <div class="skills-panel">
+        <h3>Technical Skills</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">R Studio</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Bioinformatics</span>
+          <span class="skill-tag">UCSF Chimera</span>
+          <span class="skill-tag">Design-Expert</span>
+          <span class="skill-tag">RSM / ANOVA</span>
+          <span class="skill-tag">LLM / LangChain</span>
+          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">OpenAlex API</span>
+        </div>
+
+        <div class="detail-row">
+          <span>Degree</span>
+          <span>B.Tech Biotechnology</span>
+        </div>
+        <div class="detail-row">
+          <span>Institution</span>
+          <span>Sethu Institute of Technology</span>
+        </div>
+        <div class="detail-row">
+          <span>CGPA</span>
+          <span>8.5</span>
+        </div>
+        <div class="detail-row">
+          <span>Current Role</span>
+          <span>Research Analyst, Aditya Softserv</span>
+        </div>
+        <div class="detail-row">
+          <span>Location</span>
+          <span>Chennai / Bengaluru, India</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-eyebrow">Work</p>
+  <h2>Projects</h2>
+
+  <div class="projects-list">
+
+    <div class="project-item">
+      <div class="project-meta">
+        <p class="project-index">01</p>
+        <p class="project-title">Phytochemical Characterization of Linum Usitatissimum &amp; Sesamum Indicum</p>
+      </div>
+      <div class="project-body">
+        <ul>
+          <li>Performed extraction and phytochemical screening of plant compounds</li>
+          <li>Conducted comparative analysis of bioactive compounds across both species</li>
+          <li>Optimized treatment parameters for ulcerative colitis application; achieved anti-inflammatory efficacy of 75.4%</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-meta">
+        <p class="project-index">02</p>
+        <p class="project-title">Production &amp; Optimization of Herbal Soap</p>
+        <p class="project-tools">Tools: Design-Expert · RSM · ANOVA</p>
+      </div>
+      <div class="project-body">
+        <ul>
+          <li>Applied Response Surface Methodology (RSM) using Design-Expert to optimize formulation parameters</li>
+          <li>Improved product stability and reduced material variability; TFM (Total Fatty Matter) reached 76.884% — Grade I</li>
+          <li>Performed statistical validation using ANOVA and identified optimal combinations through model prediction</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-meta">
+        <p class="project-index">03</p>
+        <p class="project-title">Fabrication of Smart Orthotic Callipers with Nano Fabrics</p>
+        <p class="project-tools">MSME-Funded Academic Project</p>
+      </div>
+      <div class="project-body">
+        <ul>
+          <li>Initiated development of lightweight orthotic callipers using nano-fabric composites for improved durability, comfort, and mobility</li>
+          <li>Conducted material characterization and biomechanical suitability testing</li>
+          <li>Designed for cost-effectiveness and accessibility; funded by the Ministry of MSME, Government of India</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-meta">
+        <p class="project-index">04</p>
+        <p class="project-title">R-JD-Analyser-Cloud</p>
+        <p class="project-tools">Python · Ollama · LangChain · Streamlit</p>
+      </div>
+      <div class="project-body">
+        <ul>
+          <li>Built a cloud-based job description analysis tool using Python and LLM-based processing</li>
+          <li>Processed and analysed 200+ job descriptions to identify high-demand technical skill clusters</li>
+          <li>Generated structured insights for resume alignment and skill gap analysis</li>
+        </ul>
+        <a href="https://github.com/Shyam-2003/R-JD-Analyser-Cloud" target="_blank" class="project-link">
+          GitHub Repository →
+        </a>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-meta">
+        <p class="project-index">05</p>
+        <p class="project-title">Academic Author Database via OpenAlex API</p>
+        <p class="project-tools">Python · OpenAlex API · JSON · Data Structuring <em>(Ongoing)</em></p>
+      </div>
+      <div class="project-body">
+        <ul>
+          <li>Built an automated Python pipeline integrating the OpenAlex API to extract and structure complete publication records of academic scholars</li>
+          <li>Parsed and structured author-level data: publications, citation counts, affiliations, and research domains</li>
+          <li>Implemented data cleaning and normalization for consistency and scalable research infrastructure</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <p class="quote-text">"I think it is possible for ordinary people to choose to be extraordinary."</p>
+  <p class="quote-attr">Elon Musk</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Shyam Sundar D.</span>
+  <div class="footer-info">
+    <p>Monday – Saturday · 11 AM – 8 PM</p>
+    <p>No 7, Arulambal St, T. Nagar, Chennai, Tamil Nadu 600017</p>
+  </div>
+</footer>
+
+</body>
+</html>
