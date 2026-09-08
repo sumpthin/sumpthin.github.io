@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Shyam Sundar - Bioinformatician</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #142035;
+    --sage: #7BAE8F;
+    --cream: #F0EEE9;
+    --cream-dim: #C8C4BB;
+    --white: #FAFAF8;
+  }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: -35%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.22;
+    background: repeating-linear-gradient(115deg, transparent 0 9rem, rgba(123,174,143,0.12) 9.1rem 9.2rem, transparent 9.3rem 18rem);
+    animation: flow-lines 28s linear infinite;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  nav, .eyebrow, h1, .about-copy, .profile-panel, footer {
+    animation: rise-in 0.8s both;
+  }
+
+  .eyebrow { animation-delay: 0.08s; }
+  h1 { animation-delay: 0.16s; }
+  .about-copy { animation-delay: 0.28s; }
+  .profile-panel { animation-delay: 0.4s; }
+
+  .skill-tag {
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .skill-tag:hover {
+    background: var(--sage);
+    color: var(--navy);
+    transform: translateY(-2px);
+  }
+
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes flow-lines {
+    from { transform: translate3d(-8%, -4%, 0) rotate(-3deg); }
+    to { transform: translate3d(8%, 4%, 0) rotate(-3deg); }
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    border-bottom: 1px solid rgba(123, 174, 143, 0.12);
+  }
+
+  nav a { text-decoration: none; }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo:hover { color: var(--sage); }
+
+  .page-label {
+    color: var(--sage);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 7rem 4rem 6rem;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--sage);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.75rem;
+  }
+
+  .eyebrow::after {
+    content: '';
+    width: 3rem;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  h1 {
+    max-width: 8ch;
+    color: var(--white);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 400;
+    line-height: 1.02;
+    margin-bottom: 4rem;
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-copy {
+    border-top: 1px solid rgba(123, 174, 143, 0.16);
+    padding-top: 2rem;
+  }
+
+  .about-copy p {
+    max-width: 60ch;
+    color: var(--cream-dim);
+    font-size: 0.98rem;
+    line-height: 1.9;
+    margin-bottom: 1.35rem;
+  }
+
+  .about-copy strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .profile-panel {
+    background: var(--navy-mid);
+    border: 1px solid rgba(123, 174, 143, 0.14);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .profile-panel:hover {
+    border-color: rgba(123, 174, 143, 0.4);
+    transform: translateY(-5px);
+  }
+
+  .profile-panel h2 {
+    color: var(--white);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .skill-tag {
+    border: 1px solid rgba(123, 174, 143, 0.25);
+    border-radius: 2px;
+    color: var(--sage);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .details {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--cream-dim);
+    font-size: 0.8rem;
+  }
+
+  .detail-row dt {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 4rem;
+    border-top: 1px solid rgba(123, 174, 143, 0.1);
+    color: rgba(200, 196, 187, 0.5);
+    font-size: 0.75rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .profile-panel { transform: none; }
+  }
+
+  @media (max-width: 800px) {
+    nav { padding: 1.25rem 1.5rem; }
+    main { padding: 5rem 1.5rem 4rem; }
+    h1 { margin-bottom: 3rem; }
+    .about-layout { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Shyam Sundar</a>
+  <a href="index.html" class="page-label">BACK TO HOME</a>
+</nav>
+
+<main>
+  <p class="eyebrow">Background</p>
+  <h1>Curious about the systems behind the data.</h1>
+
+  <div class="about-layout">
+    <article class="about-copy">
+      <p>
+        Shyam Sundar D is a <strong>Research Analyst at Aditya Softserv, Bengaluru</strong>, with a strong background in data analysis, research methodologies, and statistical tools.
+      </p>
+      <p>
+        He holds a <strong>B.Tech in Biotechnology</strong> from Sethu Institute of Technology with a CGPA of 8.5. His experience spans a Project Internship at <strong>ICAR-Sugarcane Breeding Institute</strong> and a Production Internship at Annai Agri Tech.
+      </p>
+      <p>
+        His work brings together process optimization, product development, data visualization, and computational research. He works with <strong>R Studio</strong>, Python, UCSF Chimera, statistical modelling, and cloud-based LLM pipelines.
+      </p>
+      <p>
+        He has presented research on semi-automated nano callipers and extraterrestrial studies via mass spectrometry, and holds certifications in digital marketing and bioinformatics with Python.
+      </p>
+    </article>
+
+    <aside class="profile-panel">
+      <h2>Technical skills</h2>
+      <div class="skill-tags">
+        <span class="skill-tag">R Studio</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Bioinformatics</span>
+        <span class="skill-tag">UCSF Chimera</span>
+        <span class="skill-tag">Design-Expert</span>
+        <span class="skill-tag">RSM / ANOVA</span>
+        <span class="skill-tag">LLM / LangChain</span>
+        <span class="skill-tag">Streamlit</span>
+        <span class="skill-tag">Data Visualization</span>
+        <span class="skill-tag">OpenAlex API</span>
+      </div>
+
+      <dl class="details">
+        <div class="detail-row">
+          <dt>Degree</dt>
+          <dd>B.Tech Biotechnology</dd>
+        </div>
+        <div class="detail-row">
+          <dt>Institution</dt>
+          <dd>Sethu Institute of Technology</dd>
+        </div>
+        <div class="detail-row">
+          <dt>CGPA</dt>
+          <dd>8.5</dd>
+        </div>
+        <div class="detail-row">
+          <dt>Current role</dt>
+          <dd>Research Analyst, Aditya Softserv</dd>
+        </div>
+        <div class="detail-row">
+          <dt>Location</dt>
+          <dd>Chennai / Bengaluru, India</dd>
+        </div>
+      </dl>
+    </aside>
+  </div>
+</main>
+
+<footer>Standalone profile page · Shyam Sundar D.</footer>
+
+</body>
+</html>
