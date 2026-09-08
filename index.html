@@ -206,6 +206,30 @@
     border: 1px solid rgba(123,174,143,0.14);
     border-radius: 4px;
     padding: 2.5rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .hero-card:hover {
+    border-color: rgba(123,174,143,0.4);
+    transform: translateY(-5px);
+  }
+
+  .hero-headshot {
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    object-position: center top;
+    margin-bottom: 1.5rem;
+    border: 2px solid rgba(123,174,143,0.5);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.5rem rgba(123,174,143,0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .hero-card:hover .hero-headshot {
+    transform: scale(1.04) rotate(2deg);
+    box-shadow: 0 0 0 0.65rem rgba(123,174,143,0.12);
   }
 
   .hero-card-name {
@@ -529,6 +553,7 @@
     nav { padding: 1.25rem 1.5rem; }
     .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
     .hero-inner, .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-headshot { width: 7rem; height: 7rem; }
     .project-item { grid-template-columns: 1fr; gap: 1rem; }
     .quote-section { padding: 2.5rem 1.5rem; }
     footer { padding: 2.5rem 1.5rem; flex-direction: column; align-items: flex-start; }
@@ -545,6 +570,8 @@
       opacity: 1;
       transform: none;
     }
+
+    .hero-card, .hero-headshot { transform: none; }
   }
 </style>
 </head>
@@ -576,6 +603,7 @@
     </div>
 
     <div class="hero-card">
+      <img class="hero-headshot" src="headshot.png" alt="Portrait of Shyam Sundar">
       <p class="hero-card-name">Shyam Sundar</p>
       <p class="hero-card-role">Research Analyst · Aditya Softserv, Bengaluru</p>
       <ul class="contact-list">
