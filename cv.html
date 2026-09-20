@@ -7,28 +7,31 @@
 <style>
   *, *::before { box-sizing: border-box; }
   html, body { height: 100%; margin: 0; }
-  body { background: #eef3f0; color: #14251d; font-family: Inter, Arial, sans-serif; }
-  nav { height: 4.5rem; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; background: rgba(255,255,255,.94); border-bottom: 1px solid rgba(47,125,90,.16); }
+  body { background: radial-gradient(circle at 12% 10%, #fff 0, #eef3f0 42%, #dce9e1 100%); color: #14251d; font-family: Inter, Arial, sans-serif; }
+  nav { height: 4.5rem; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; background: rgba(255,255,255,.64); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(47,125,90,.12); }
   nav a { color: #2f7d5a; text-decoration: none; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
   .logo { color: #14251d; font-family: Georgia, serif; font-size: 1.2rem; text-transform: none; letter-spacing: 0; }
-  main { height: calc(100vh - 4.5rem); padding: 1.5rem 4rem; }
-  .viewer-shell { height: 100%; display: grid; grid-template-rows: auto 1fr; overflow: hidden; border: 1px solid rgba(47,125,90,.2); background: #fff; box-shadow: 0 1rem 3rem rgba(20,37,29,.08); }
-  .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem 1rem; background: #14251d; color: #fff; }
+  main { height: calc(100vh - 4.5rem); max-width: 1600px; margin: 0 auto; padding: 1rem 2rem 2rem; }
+  .viewer-shell { height: 100%; display: grid; grid-template-rows: auto 1fr; overflow: hidden; border: 1px solid rgba(47,125,90,.18); border-radius: 1.25rem; background: rgba(255,255,255,.72); box-shadow: 0 1.5rem 4rem rgba(20,37,29,.14); }
+  .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; background: rgba(20,37,29,.96); color: #fff; }
   .viewer-title { color: #a9d9bd; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
-  .controls { display: flex; align-items: center; gap: .45rem; }
-  button { min-width: 2rem; height: 2rem; border: 1px solid rgba(255,255,255,.22); background: transparent; color: #fff; cursor: pointer; font: inherit; }
+  .controls { display: flex; align-items: center; gap: .45rem; flex-wrap: wrap; }
+  button { min-width: 2rem; height: 2rem; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; background: transparent; color: #fff; cursor: pointer; font: inherit; }
   button:hover:not(:disabled) { background: #2f7d5a; border-color: #2f7d5a; }
   button:disabled { cursor: not-allowed; opacity: .35; }
-  .request-button { display: inline-flex; align-items: center; height: 2rem; padding: 0 .8rem; background: #a9d9bd; color: #14251d; font-size: .72rem; font-weight: 700; text-decoration: none; letter-spacing: .05em; text-transform: uppercase; }
+  .request-button { display: inline-flex; align-items: center; height: 2rem; padding: 0 .8rem; border-radius: 999px; background: #a9d9bd; color: #14251d; font-size: .72rem; font-weight: 700; text-decoration: none; letter-spacing: .05em; text-transform: uppercase; }
   .request-button:hover { background: #fff; }
   .page-status { min-width: 5rem; text-align: center; font-size: .75rem; }
-  .stage { display: flex; justify-content: center; overflow: auto; padding: 2rem; background: #dfe9e3; }
+  .stage { display: flex; justify-content: center; overflow: auto; padding: clamp(1.25rem, 3vw, 2rem) .75rem; background: rgba(223,233,227,.72); }
   .pages { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; width: 100%; }
-  .page-canvas { max-width: 100%; height: auto; background: #fff; box-shadow: 0 .75rem 1.5rem rgba(20,37,29,.18); }
+  .page-canvas { display: block; width: 100%; max-width: 100%; height: auto; background: #fff; box-shadow: none; }
+  .page { position: relative; max-width: 100%; overflow: visible; border-radius: .85rem; background: #fff; box-shadow: 0 .75rem 1.5rem rgba(20,37,29,.18); }
+  .text-layer { position: absolute; inset: 0; overflow: hidden; line-height: 1; transform-origin: 0 0; user-select: text; }
+  .text-layer span { position: absolute; color: transparent; white-space: pre; cursor: text; transform-origin: 0 0; }
+  .text-layer ::selection { background: rgba(47,125,90,.28); }
   .loading { margin: auto; color: #607168; font-size: .9rem; }
-  @media (max-width: 800px) { nav { padding: 0 1.25rem; } main { height: calc(100vh - 4.5rem); padding: .75rem; } .toolbar { flex-wrap: wrap; } .viewer-title { flex: 1 0 100%; } .stage { padding: .75rem; } }
+  @media (max-width: 800px) { nav { padding: 0 1.25rem; } main { height: calc(100vh - 4.5rem); padding: .5rem; } .viewer-shell { border-radius: 1rem; } .toolbar { flex-wrap: wrap; } .viewer-title { flex: 1 0 100%; } .controls { width: 100%; justify-content: flex-end; gap: .3rem; } .request-button { flex: 1 1 8rem; justify-content: center; min-width: 8rem; padding: 0 .55rem; font-size: .66rem; } .stage { padding: .75rem .4rem; } }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
 </head>
 <body>
 <nav>
@@ -40,7 +43,6 @@
     <div class="toolbar">
       <span class="viewer-title">Shyam Sundar · CV</span>
       <div class="controls">
-        <span class="page-status"><span id="page-count">—</span> pages</span>
         <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
         <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
         <button id="scroll-down" type="button" aria-label="Scroll down">↓</button>
@@ -55,7 +57,6 @@
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
   const loading = document.getElementById('loading');
-  const pageCount = document.getElementById('page-count');
   const pages = document.getElementById('pages');
   const stage = document.getElementById('stage');
   let pdfDocument;
@@ -63,26 +64,40 @@
 
   async function renderDocument() {
     pages.replaceChildren();
-    const stageWidth = stage.clientWidth - 64;
+    const stageStyle = getComputedStyle(stage);
+    const stageWidth = stage.clientWidth - parseFloat(stageStyle.paddingLeft) - parseFloat(stageStyle.paddingRight);
     for (let number = 1; number <= pdfDocument.numPages; number += 1) {
       const page = await pdfDocument.getPage(number);
+      const pageContainer = document.createElement('div');
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
+      const textLayer = document.createElement('div');
+      pageContainer.className = 'page';
       canvas.className = 'page-canvas';
-      pages.appendChild(canvas);
-    const baseViewport = page.getViewport({ scale: 1 });
-    const fitScale = Math.min(stageWidth / baseViewport.width, 1.25);
-    const viewport = page.getViewport({ scale: fitScale * zoom });
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    await page.render({ canvasContext: context, viewport }).promise;
+      textLayer.className = 'text-layer';
+      pages.appendChild(pageContainer);
+      pageContainer.append(canvas, textLayer);
+      const baseViewport = page.getViewport({ scale: 1 });
+      const fitScale = Math.min(stageWidth / baseViewport.width, 1.25);
+      const viewport = page.getViewport({ scale: fitScale * zoom });
+      const outputScale = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(viewport.width * outputScale);
+      canvas.height = Math.floor(viewport.height * outputScale);
+      canvas.style.width = `${viewport.width}px`;
+      canvas.style.height = `${viewport.height}px`;
+      pageContainer.style.width = `${viewport.width}px`;
+      pageContainer.style.height = `${viewport.height}px`;
+      pageContainer.style.aspectRatio = `${viewport.width} / ${viewport.height}`;
+      await page.render({ canvasContext: context, viewport, transform: [outputScale, 0, 0, outputScale, 0, 0] }).promise;
+      const textContent = await page.getTextContent();
+      const textLayerBuilder = new pdfjsLib.TextLayer({ textContentSource: textContent, container: textLayer, viewport });
+      await textLayerBuilder.render();
     }
     loading.hidden = true;
   }
 
   pdfjsLib.getDocument('cv.pdf').promise.then((document) => {
     pdfDocument = document;
-    pageCount.textContent = document.numPages;
     renderDocument();
   }).catch(() => {
     loading.textContent = 'The CV could not be loaded. Please refresh the page.';
