@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects - Shyam Sundar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --green: #2f7d5a; --ink: #14251d; --muted: #607168; --line: rgba(47, 125, 90, 0.16); --panel: #f6f8f7; }
+  html { scroll-behavior: smooth; }
+  body { background: #fff; color: var(--ink); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; position: relative; }
+  body::before { content: ''; position: fixed; inset: -35%; z-index: -1; pointer-events: none; opacity: .22; background: repeating-linear-gradient(115deg, transparent 0 9rem, rgba(123,174,143,.12) 9.1rem 9.2rem, transparent 9.3rem 18rem); animation: flow-lines 28s linear infinite; }
+  .ball-field { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+  .ball { position: absolute; display: block; width: var(--size); height: var(--size); border-radius: 50%; opacity: .42; filter: blur(1px); animation: float-ball var(--duration) ease-in-out infinite alternate; animation-delay: var(--delay); }
+  .ball:nth-child(1) { --size: 11rem; --duration: 16s; --delay: -2s; top: 8%; left: 8%; background: radial-gradient(circle at 32% 28%, #f6b7b2, #e57870 58%, transparent 74%); }
+  .ball:nth-child(2) { --size: 7rem; --duration: 12s; --delay: -7s; top: 25%; left: 42%; background: radial-gradient(circle at 32% 28%, #a9d9ef, #5ca8d0 58%, transparent 74%); }
+  .ball:nth-child(3) { --size: 15rem; --duration: 20s; --delay: -11s; top: 56%; right: 5%; background: radial-gradient(circle at 32% 28%, #f7d59b, #e9a84f 58%, transparent 74%); }
+  .ball:nth-child(4) { --size: 6rem; --duration: 14s; --delay: -5s; bottom: 12%; left: 18%; background: radial-gradient(circle at 32% 28%, #c6b5e8, #8d6ec4 58%, transparent 74%); }
+  .ball:nth-child(5) { --size: 9rem; --duration: 18s; --delay: -9s; top: 42%; left: 72%; background: radial-gradient(circle at 32% 28%, #9eddbb, #4fa878 58%, transparent 74%); }
+  .ball:nth-child(6) { --size: 5rem; --duration: 11s; --delay: -3s; bottom: 20%; right: 36%; background: radial-gradient(circle at 32% 28%, #f0b3d4, #ce6fa3 58%, transparent 74%); }
+  .ball:nth-child(7) { --size: 8rem; --duration: 15s; --delay: -13s; top: 70%; left: 48%; background: radial-gradient(circle at 32% 28%, #b4c8f0, #6b87d0 58%, transparent 74%); }
+  .ball:nth-child(8) { --size: 4rem; --duration: 10s; --delay: -6s; top: 12%; right: 26%; background: radial-gradient(circle at 32% 28%, #f4c5a6, #df8a54 58%, transparent 74%); }
+  @keyframes flow-lines { from { transform: translate3d(-8%, -4%, 0) rotate(-3deg); } to { transform: translate3d(8%, 4%, 0) rotate(-3deg); } }
+  @keyframes float-ball { from { transform: translate3d(-3vw, 4vh, 0) scale(.86) rotate(0deg); } to { transform: translate3d(4vw, -5vh, 0) scale(1.12) rotate(18deg); } }
+  nav { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(255,255,255,.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  nav a { text-decoration: none; color: var(--green); }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+  main { max-width: 1100px; margin: 0 auto; padding: 7rem 4rem 6rem; }
+  .eyebrow { color: var(--green); font-size: .72rem; font-weight: 500; letter-spacing: .14em; margin-bottom: .75rem; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 400; line-height: 1.02; margin-bottom: 4rem; }
+  .project-item { border-top: 1px solid var(--line); padding: 2.5rem 0; display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; animation: rise-in .8s both; }
+  .project-item:last-child { border-bottom: 1px solid var(--line); }
+  .project-item:nth-child(2) { animation-delay: .08s; } .project-item:nth-child(3) { animation-delay: .16s; } .project-item:nth-child(4) { animation-delay: .24s; } .project-item:nth-child(5) { animation-delay: .32s; }
+  .project-index { color: var(--green); font-size: .68rem; font-weight: 500; letter-spacing: .1em; margin-bottom: .5rem; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; font-weight: 400; line-height: 1.3; }
+  .project-tools { color: var(--muted); font-size: .7rem; letter-spacing: .05em; margin-top: .75rem; }
+  .project-body ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .project-body li { color: var(--muted); font-size: .88rem; line-height: 1.65; padding-left: 1rem; position: relative; }
+  .project-body li::before { content: ''; position: absolute; left: 0; top: .65em; width: .35rem; height: 1px; background: var(--green); }
+  .project-link { display: inline-block; margin-top: 1rem; font-size: .78rem; font-weight: 500; }
+  footer { max-width: 1100px; margin: 0 auto; padding: 2.5rem 4rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .75rem; }
+  @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 800px) { nav { padding: 1.25rem 1.5rem; } .nav-links { gap: .75rem; } main { padding: 5rem 1.5rem 4rem; } h1 { margin-bottom: 3rem; } .project-item { grid-template-columns: 1fr; gap: 1rem; } footer { padding: 2rem 1.5rem; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="ball-field" aria-hidden="true"><span class="ball"></span><span class="ball"></span><span class="ball"></span><span class="ball"></span><span class="ball"></span><span class="ball"></span><span class="ball"></span><span class="ball"></span></div>
+<nav>
+  <a href="index.html" class="nav-logo">Shyam Sundar</a>
+  <ul class="nav-links"><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="index.html">Home</a></li></ul>
+</nav>
+<main>
+  <p class="eyebrow">Selected work</p>
+  <h1>Projects that connect biology, materials, and data.</h1>
+  <div class="projects-list">
+    <article class="project-item"><div><p class="project-index">01</p><h2>Phytochemical Characterization of Linum Usitatissimum &amp; Sesamum Indicum</h2></div><div class="project-body"><ul><li>Performed extraction and phytochemical screening of plant compounds</li><li>Conducted comparative analysis of bioactive compounds across both species</li><li>Optimized treatment parameters for ulcerative colitis application; achieved anti-inflammatory efficacy of 75.4%</li></ul></div></article>
+    <article class="project-item"><div><p class="project-index">02</p><h2>Production &amp; Optimization of Herbal Soap</h2><p class="project-tools">Tools: Design-Expert · RSM · ANOVA</p></div><div class="project-body"><ul><li>Applied Response Surface Methodology using Design-Expert to optimize formulation parameters</li><li>Improved product stability and reduced material variability; TFM reached 76.884% — Grade I</li><li>Performed statistical validation using ANOVA and identified optimal combinations through model prediction</li></ul></div></article>
+    <article class="project-item"><div><p class="project-index">03</p><h2>Fabrication of Smart Orthotic Callipers with Nano Fabrics</h2><p class="project-tools">MSME-Funded Academic Project</p></div><div class="project-body"><ul><li>Developed lightweight orthotic callipers using nano-fabric composites for improved durability, comfort, and mobility</li><li>Conducted material characterization and biomechanical suitability testing</li><li>Designed for cost-effectiveness and accessibility; funded by the Ministry of MSME, Government of India</li></ul></div></article>
+    <article class="project-item"><div><p class="project-index">04</p><h2>R-JD-Analyser-Cloud</h2><p class="project-tools">Python · Ollama · LangChain · Streamlit</p></div><div class="project-body"><ul><li>Built a cloud-based job description analysis tool using Python and LLM-based processing</li><li>Processed and analysed 200+ job descriptions to identify high-demand technical skill clusters</li><li>Generated structured insights for resume alignment and skill gap analysis</li></ul><a href="https://github.com/Shyam-2003/R-JD-Analyser-Cloud" target="_blank" class="project-link">GitHub Repository →</a></div></article>
+    <article class="project-item"><div><p class="project-index">05</p><h2>Academic Author Database via OpenAlex API</h2><p class="project-tools">Python · OpenAlex API · JSON · Data Structuring <em>(Ongoing)</em></p></div><div class="project-body"><ul><li>Built an automated Python pipeline integrating the OpenAlex API to extract and structure publication records</li><li>Parsed author-level data including publications, citation counts, affiliations, and research domains</li><li>Implemented data cleaning and normalization for scalable research infrastructure</li></ul></div></article>
+  </div>
+</main>
+<footer>Projects page · Shyam Sundar D.</footer>
+</body>
+</html>

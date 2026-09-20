@@ -11,12 +11,12 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --navy: #0A1628;
-    --navy-mid: #142035;
-    --sage: #7BAE8F;
-    --cream: #F0EEE9;
-    --cream-dim: #C8C4BB;
-    --white: #FAFAF8;
+    --navy: #ffffff;
+    --navy-mid: #f6f8f7;
+    --sage: #2f7d5a;
+    --cream: #203229;
+    --cream-dim: #607168;
+    --white: #14251d;
   }
 
   body {
@@ -41,6 +41,17 @@
     background: repeating-linear-gradient(115deg, transparent 0 9rem, rgba(123,174,143,0.12) 9.1rem 9.2rem, transparent 9.3rem 18rem);
     animation: flow-lines 28s linear infinite;
   }
+
+  .ball-field { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+  .ball { position: absolute; display: block; width: var(--size); height: var(--size); border-radius: 50%; opacity: .42; filter: blur(1px); animation: float-ball var(--duration) ease-in-out infinite alternate; animation-delay: var(--delay); }
+  .ball:nth-child(1) { --size: 11rem; --duration: 16s; --delay: -2s; top: 8%; left: 8%; background: radial-gradient(circle at 32% 28%, #f6b7b2, #e57870 58%, transparent 74%); }
+  .ball:nth-child(2) { --size: 7rem; --duration: 12s; --delay: -7s; top: 25%; left: 42%; background: radial-gradient(circle at 32% 28%, #a9d9ef, #5ca8d0 58%, transparent 74%); }
+  .ball:nth-child(3) { --size: 15rem; --duration: 20s; --delay: -11s; top: 56%; right: 5%; background: radial-gradient(circle at 32% 28%, #f7d59b, #e9a84f 58%, transparent 74%); }
+  .ball:nth-child(4) { --size: 6rem; --duration: 14s; --delay: -5s; bottom: 12%; left: 18%; background: radial-gradient(circle at 32% 28%, #c6b5e8, #8d6ec4 58%, transparent 74%); }
+  .ball:nth-child(5) { --size: 9rem; --duration: 18s; --delay: -9s; top: 42%; left: 72%; background: radial-gradient(circle at 32% 28%, #9eddbb, #4fa878 58%, transparent 74%); }
+  .ball:nth-child(6) { --size: 5rem; --duration: 11s; --delay: -3s; bottom: 20%; right: 36%; background: radial-gradient(circle at 32% 28%, #f0b3d4, #ce6fa3 58%, transparent 74%); }
+  .ball:nth-child(7) { --size: 8rem; --duration: 15s; --delay: -13s; top: 70%; left: 48%; background: radial-gradient(circle at 32% 28%, #b4c8f0, #6b87d0 58%, transparent 74%); }
+  .ball:nth-child(8) { --size: 4rem; --duration: 10s; --delay: -6s; top: 12%; right: 26%; background: radial-gradient(circle at 32% 28%, #f4c5a6, #df8a54 58%, transparent 74%); }
 
   html { scroll-behavior: smooth; }
 
@@ -73,12 +84,22 @@
     to { transform: translate3d(8%, 4%, 0) rotate(-3deg); }
   }
 
+  @keyframes float-ball {
+    from { transform: translate3d(-3vw, 4vh, 0) scale(.86) rotate(0deg); }
+    to { transform: translate3d(4vw, -5vh, 0) scale(1.12) rotate(18deg); }
+  }
+
   nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 4rem;
-    border-bottom: 1px solid rgba(123, 174, 143, 0.12);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(47, 125, 90, 0.12);
   }
 
   nav a { text-decoration: none; }
@@ -98,6 +119,8 @@
     font-weight: 500;
     letter-spacing: 0.14em;
   }
+
+  .page-label a { color: var(--sage); margin-left: 1.25rem; }
 
   main {
     max-width: 1100px;
@@ -245,9 +268,14 @@
 </head>
 <body>
 
+<div class="ball-field" aria-hidden="true">
+  <span class="ball"></span><span class="ball"></span><span class="ball"></span><span class="ball"></span>
+  <span class="ball"></span><span class="ball"></span><span class="ball"></span><span class="ball"></span>
+</div>
+
 <nav>
   <a href="index.html" class="nav-logo">Shyam Sundar</a>
-  <a href="index.html" class="page-label">BACK TO HOME</a>
+  <div class="page-label"><a href="about.html">About</a><a href="projects.html">Projects</a><a href="index.html">Home</a></div>
 </nav>
 
 <main>

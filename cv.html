@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV - Shyam Sundar</title>
+<style>
+  *, *::before { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { background: #eef3f0; color: #14251d; font-family: Inter, Arial, sans-serif; }
+  nav { height: 4.5rem; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; background: rgba(255,255,255,.94); border-bottom: 1px solid rgba(47,125,90,.16); }
+  nav a { color: #2f7d5a; text-decoration: none; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .logo { color: #14251d; font-family: Georgia, serif; font-size: 1.2rem; text-transform: none; letter-spacing: 0; }
+  main { height: calc(100vh - 4.5rem); padding: 1.5rem 4rem; }
+  .viewer-shell { height: 100%; display: grid; grid-template-rows: auto 1fr; overflow: hidden; border: 1px solid rgba(47,125,90,.2); background: #fff; box-shadow: 0 1rem 3rem rgba(20,37,29,.08); }
+  .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem 1rem; background: #14251d; color: #fff; }
+  .viewer-title { color: #a9d9bd; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .controls { display: flex; align-items: center; gap: .45rem; }
+  button { min-width: 2rem; height: 2rem; border: 1px solid rgba(255,255,255,.22); background: transparent; color: #fff; cursor: pointer; font: inherit; }
+  button:hover:not(:disabled) { background: #2f7d5a; border-color: #2f7d5a; }
+  button:disabled { cursor: not-allowed; opacity: .35; }
+  .request-button { display: inline-flex; align-items: center; height: 2rem; padding: 0 .8rem; background: #a9d9bd; color: #14251d; font-size: .72rem; font-weight: 700; text-decoration: none; letter-spacing: .05em; text-transform: uppercase; }
+  .request-button:hover { background: #fff; }
+  .page-status { min-width: 5rem; text-align: center; font-size: .75rem; }
+  .stage { display: flex; justify-content: center; overflow: auto; padding: 2rem; background: #dfe9e3; }
+  .pages { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; width: 100%; }
+  .page-canvas { max-width: 100%; height: auto; background: #fff; box-shadow: 0 .75rem 1.5rem rgba(20,37,29,.18); }
+  .loading { margin: auto; color: #607168; font-size: .9rem; }
+  @media (max-width: 800px) { nav { padding: 0 1.25rem; } main { height: calc(100vh - 4.5rem); padding: .75rem; } .toolbar { flex-wrap: wrap; } .viewer-title { flex: 1 0 100%; } .stage { padding: .75rem; } }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">Shyam Sundar</a>
+  <a href="index.html">Back to home</a>
+</nav>
+<main>
+  <section class="viewer-shell" aria-label="CV document viewer">
+    <div class="toolbar">
+      <span class="viewer-title">Shyam Sundar · CV</span>
+      <div class="controls">
+        <span class="page-status"><span id="page-count">—</span> pages</span>
+        <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
+        <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+        <button id="scroll-down" type="button" aria-label="Scroll down">↓</button>
+        <a class="request-button" href="cv.pdf" download="Shyam-Sundar-CV.pdf">Download CV</a>
+      </div>
+    </div>
+    <div class="stage" id="stage"><p class="loading" id="loading">Loading CV…</p><div class="pages" id="pages"></div></div>
+  </section>
+</main>
+<script type="module">
+  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
+  const loading = document.getElementById('loading');
+  const pageCount = document.getElementById('page-count');
+  const pages = document.getElementById('pages');
+  const stage = document.getElementById('stage');
+  let pdfDocument;
+  let zoom = 1;
+
+  async function renderDocument() {
+    pages.replaceChildren();
+    const stageWidth = stage.clientWidth - 64;
+    for (let number = 1; number <= pdfDocument.numPages; number += 1) {
+      const page = await pdfDocument.getPage(number);
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      canvas.className = 'page-canvas';
+      pages.appendChild(canvas);
+    const baseViewport = page.getViewport({ scale: 1 });
+    const fitScale = Math.min(stageWidth / baseViewport.width, 1.25);
+    const viewport = page.getViewport({ scale: fitScale * zoom });
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    await page.render({ canvasContext: context, viewport }).promise;
+    }
+    loading.hidden = true;
+  }
+
+  pdfjsLib.getDocument('cv.pdf').promise.then((document) => {
+    pdfDocument = document;
+    pageCount.textContent = document.numPages;
+    renderDocument();
+  }).catch(() => {
+    loading.textContent = 'The CV could not be loaded. Please refresh the page.';
+  });
+
+  document.getElementById('zoom-out').addEventListener('click', () => { zoom = Math.max(.75, zoom - .15); renderDocument(); });
+  document.getElementById('zoom-in').addEventListener('click', () => { zoom = Math.min(2, zoom + .15); renderDocument(); });
+  document.getElementById('scroll-down').addEventListener('click', () => stage.scrollBy({ top: Math.max(stage.clientHeight * .8, 400), behavior: 'smooth' }));
+  window.addEventListener('resize', () => { if (pdfDocument) renderDocument(); });
+</script>
+</body>
+</html>
