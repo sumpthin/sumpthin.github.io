@@ -9,8 +9,11 @@
   html, body { height: 100%; margin: 0; }
   body { background: radial-gradient(circle at 12% 10%, #fff 0, #eef3f0 42%, #dce9e1 100%); color: #14251d; font-family: Inter, Arial, sans-serif; }
   nav { height: 4.5rem; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; background: rgba(255,255,255,.64); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(47,125,90,.12); }
-  nav a { color: #2f7d5a; text-decoration: none; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-  .logo { color: #14251d; font-family: Georgia, serif; font-size: 1.2rem; text-transform: none; letter-spacing: 0; }
+  nav a { text-decoration: none; }
+  .logo { color: #14251d; font-family: Georgia, serif; font-size: 1.2rem; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: #607168; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .nav-links a:hover { color: #2f7d5a; }
   main { height: calc(100vh - 4.5rem); max-width: 1600px; margin: 0 auto; padding: 1rem 2rem 2rem; }
   .viewer-shell { height: 100%; display: grid; grid-template-rows: auto 1fr; overflow: hidden; border: 1px solid rgba(47,125,90,.18); border-radius: 1.25rem; background: rgba(255,255,255,.72); box-shadow: 0 1.5rem 4rem rgba(20,37,29,.14); }
   .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; background: rgba(20,37,29,.96); color: #fff; }
@@ -30,13 +33,13 @@
   .text-layer span { position: absolute; color: transparent; white-space: pre; cursor: text; transform-origin: 0 0; }
   .text-layer ::selection { background: rgba(47,125,90,.28); }
   .loading { margin: auto; color: #607168; font-size: .9rem; }
-  @media (max-width: 800px) { nav { padding: 0 1.25rem; } main { height: calc(100vh - 4.5rem); padding: .5rem; } .viewer-shell { border-radius: 1rem; } .toolbar { flex-wrap: wrap; } .viewer-title { flex: 1 0 100%; } .controls { width: 100%; justify-content: flex-end; gap: .3rem; } .request-button { flex: 1 1 8rem; justify-content: center; min-width: 8rem; padding: 0 .55rem; font-size: .66rem; } .stage { padding: .75rem .4rem; } }
+  @media (max-width: 800px) { nav { padding: 0 1.25rem; } .nav-links { gap: .75rem; } main { height: calc(100vh - 4.5rem); padding: .5rem; } .viewer-shell { border-radius: 1rem; } .toolbar { flex-wrap: wrap; } .viewer-title { flex: 1 0 100%; } .controls { width: 100%; justify-content: flex-end; gap: .3rem; } .request-button { flex: 1 1 8rem; justify-content: center; min-width: 8rem; padding: 0 .55rem; font-size: .66rem; } .stage { padding: .75rem .4rem; } }
 </style>
 </head>
 <body>
 <nav>
-  <a href="index.html" class="logo">Shyam Sundar</a>
-  <a href="index.html">Back to home</a>
+  <a href="/" class="logo">Shyam Sundar</a>
+  <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/projects/">Projects</a></li><li><a href="mailto:shyamsundarbiotech@gmail.com">Contact</a></li></ul>
 </nav>
 <main>
   <section class="viewer-shell" aria-label="CV document viewer">
@@ -46,7 +49,7 @@
         <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
         <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
         <button id="scroll-down" type="button" aria-label="Scroll down">↓</button>
-        <a class="request-button" href="cv.pdf" download="Shyam-Sundar-CV.pdf">Download CV</a>
+        <a class="request-button" href="../cv.pdf" download="Shyam-Sundar-CV.pdf">Download CV</a>
       </div>
     </div>
     <div class="stage" id="stage"><p class="loading" id="loading">Loading CV…</p><div class="pages" id="pages"></div></div>

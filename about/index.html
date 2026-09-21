@@ -113,6 +113,21 @@
 
   .nav-logo:hover { color: var(--sage); }
 
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--cream-dim);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-links a:hover { color: var(--sage); }
+
   .page-label {
     color: var(--sage);
     font-size: 0.72rem;
@@ -259,6 +274,7 @@
 
   @media (max-width: 800px) {
     nav { padding: 1.25rem 1.5rem; }
+    .nav-links { gap: 1rem; }
     main { padding: 5rem 1.5rem 4rem; }
     h1 { margin-bottom: 3rem; }
     .about-layout { grid-template-columns: 1fr; gap: 3rem; }
@@ -274,8 +290,8 @@
 </div>
 
 <nav>
-  <a href="index.html" class="nav-logo">Shyam Sundar</a>
-  <div class="page-label"><a href="about.html">About</a><a href="projects.html">Projects</a><a href="index.html">Home</a></div>
+  <a href="/" class="nav-logo">Shyam Sundar</a>
+  <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/projects/">Projects</a></li><li><a href="mailto:shyamsundarbiotech@gmail.com">Contact</a></li></ul>
 </nav>
 
 <main>
