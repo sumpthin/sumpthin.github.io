@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#b9e4ee">
+<title>Flappy Bird</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; margin: 0; }
+  body { display: grid; place-items: center; overflow: hidden; padding: 12px; background: #b9e4ee; }
+  canvas { display: block; width: min(100%, 480px); height: auto; aspect-ratio: 4 / 3; touch-action: manipulation; outline: none; }
+  canvas:focus-visible { outline: 2px solid #203229; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<canvas width="480" height="360" tabindex="0" aria-label="Flappy Bird. Tap or press Space or Arrow Up to fly.">Your browser does not support canvas games.</canvas>
+<script src="game.js"></script>
+</body>
+</html>

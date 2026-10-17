@@ -21,19 +21,13 @@
   main { max-width: 1200px; margin: 0 auto; padding: 5rem 4rem 4rem; }
   .eyebrow { color: var(--green); font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
   h1 { margin: .4rem 0 2.5rem; font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 400; line-height: 1.05; }
-  .games-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .games-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 1.5rem; }
   .game { min-width: 0; overflow: hidden; border: 1px solid var(--line); background: var(--panel); animation: rise-in .65s both; }
   .game:nth-child(2) { animation-delay: .12s; }
-  .game:nth-child(3) { animation-delay: .24s; }
-  .game-snake { grid-column: 1 / -1; }
   .game-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; }
   h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; }
   .game-number { color: var(--green); font-size: .7rem; font-weight: 600; letter-spacing: .1em; }
-  .launch-panel { display: grid; place-content: center; gap: .5rem; width: 100%; aspect-ratio: 4 / 3; background: #14251d; color: #fff; text-align: center; text-decoration: none; }
-  .launch-panel strong { color: #a9d9bd; font-family: 'DM Serif Display', serif; font-size: 3.5rem; font-weight: 400; line-height: 1; }
-  .launch-panel span { color: #fff; font-size: .75rem; font-weight: 500; text-transform: uppercase; }
-  .game:nth-child(2) .launch-panel { background: #6f2830; }
-  .game:nth-child(2) .launch-panel strong { color: #ffd48a; font-size: 2.5rem; }
+  .flappy-frame { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border: 0; background: #b9e4ee; }
   .snake-frame { display: block; width: 100%; height: 560px; border: 0; background: #171717; }
   .game-footer { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: .85rem 1.25rem 1rem; font-size: .75rem; }
   .game-footer a { color: var(--green); font-weight: 500; text-underline-offset: .2em; }
@@ -45,7 +39,6 @@
     .nav-links { gap: .6rem .9rem; font-size: .65rem; }
     main { padding: 3.5rem 1.25rem; }
     .games-grid { grid-template-columns: 1fr; }
-    .game-snake { grid-column: auto; }
     .snake-frame { height: 500px; }
     footer { padding: 1.5rem 1.25rem; }
   }
@@ -68,29 +61,17 @@
   <h1>Pick a game.</h1>
   <div class="games-grid">
     <article class="game">
-      <div class="game-heading"><h2>2048</h2><span class="game-number">01</span></div>
-      <a class="launch-panel" href="https://play2048.co/" target="_blank" rel="noopener noreferrer" aria-label="Open 2048 in a new tab">
-        <strong>2048</strong>
-        <span>Open game in a new tab</span>
-      </a>
+      <div class="game-heading"><h2>Flappy Bird</h2><span class="game-number">01</span></div>
+      <iframe class="flappy-frame" src="flappy/index.html" title="Flappy Bird game hosted on this site" loading="lazy"></iframe>
       <div class="game-footer">
-        <a href="https://github.com/gabrielecirulli/2048" target="_blank" rel="noopener noreferrer">Source code</a>
-        <span class="license">Gabriele Cirulli · MIT License</span>
+        <a href="https://github.com/omariosouto/flappy-bird-devsoutinho" target="_blank" rel="noopener noreferrer">Original game code</a>
+        <a href="flappy/game.js">Bundled JavaScript</a>
+        <a href="flappy/LICENSE.md">MIT license</a>
+        <a href="flappy/assets/CC0-LICENSE.txt">Kenney CC0 art</a>
       </div>
     </article>
     <article class="game">
-      <div class="game-heading"><h2>Ms. Pac-Man</h2><span class="game-number">02</span></div>
-      <a class="launch-panel" href="https://pacman.js.org/" target="_blank" rel="noopener noreferrer" aria-label="Open Ms. Pac-Man in a new tab">
-        <strong>MS. PAC-MAN</strong>
-        <span>Open game in a new tab</span>
-      </a>
-      <div class="game-footer">
-        <a href="https://github.com/8tentaculos/jsPacman" target="_blank" rel="noopener noreferrer">Source code</a>
-        <span class="license">jsPacman · MIT License</span>
-      </div>
-    </article>
-    <article class="game game-snake">
-      <div class="game-heading"><h2>Snake</h2><span class="game-number">03</span></div>
+      <div class="game-heading"><h2>Snake</h2><span class="game-number">02</span></div>
       <iframe class="snake-frame" src="snake/index.html" title="Snake game hosted on this site" loading="lazy" allow="fullscreen"></iframe>
       <div class="game-footer">
         <a href="https://github.com/patorjk/JavaScript-Snake" target="_blank" rel="noopener noreferrer">Original source</a>
@@ -102,6 +83,6 @@
     </article>
   </div>
 </main>
-<footer>Snake runs from this site; 2048 and Ms. Pac-Man remain hosted by their creators.</footer>
+<footer>Flappy Bird and Snake run from this site using locally bundled source and assets.</footer>
 </body>
 </html>
