@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#14251d">
+<title>Arcade - Shyam Sundar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --green: #2f7d5a; --ink: #14251d; --muted: #607168; --line: rgba(47,125,90,.18); --panel: #f6f8f7; }
+  body { background: #fff; color: var(--ink); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; }
+  nav { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.25rem 4rem; background: rgba(255,255,255,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  nav a { text-decoration: none; }
+  .nav-logo { color: var(--ink); font-family: 'DM Serif Display', serif; font-size: 1.1rem; white-space: nowrap; }
+  .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 1.25rem; list-style: none; font-size: .72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--green); }
+  main { max-width: 1200px; margin: 0 auto; padding: 5rem 4rem 4rem; }
+  .eyebrow { color: var(--green); font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  h1 { margin: .4rem 0 2.5rem; font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 400; line-height: 1.05; }
+  .games-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .game { min-width: 0; overflow: hidden; border: 1px solid var(--line); background: var(--panel); animation: rise-in .65s both; }
+  .game:nth-child(2) { animation-delay: .12s; }
+  .game-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; }
+  .game-number { color: var(--green); font-size: .7rem; font-weight: 600; letter-spacing: .1em; }
+  .launch-panel { display: grid; place-content: center; gap: .5rem; width: 100%; aspect-ratio: 4 / 3; background: #14251d; color: #fff; text-align: center; text-decoration: none; }
+  .launch-panel strong { color: #a9d9bd; font-family: 'DM Serif Display', serif; font-size: 3.5rem; font-weight: 400; line-height: 1; }
+  .launch-panel span { color: #fff; font-size: .75rem; font-weight: 500; text-transform: uppercase; }
+  .game:nth-child(2) .launch-panel { background: #6f2830; }
+  .game:nth-child(2) .launch-panel strong { color: #ffd48a; font-size: 2.5rem; }
+  .game:last-child .game-frame { aspect-ratio: 16 / 10; }
+  .game-footer { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: .85rem 1.25rem 1rem; font-size: .75rem; }
+  .game-footer a { color: var(--green); font-weight: 500; text-underline-offset: .2em; }
+  .license { color: var(--muted); }
+  footer { max-width: 1200px; margin: 0 auto; padding: 2rem 4rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .75rem; }
+  @keyframes rise-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 800px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: .6rem .9rem; font-size: .65rem; }
+    main { padding: 3.5rem 1.25rem; }
+    .games-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem 1.25rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+</style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <a href="../" class="nav-logo">Shyam Sundar</a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../about/">About</a></li>
+    <li><a href="../projects/">Projects</a></li>
+    <li><a href="./" aria-current="page">Games</a></li>
+    <li><a href="mailto:shyamsundarbiotech@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="eyebrow">The arcade</p>
+  <h1>Pick a game.</h1>
+  <div class="games-grid">
+    <article class="game">
+      <div class="game-heading"><h2>2048</h2><span class="game-number">01</span></div>
+      <a class="launch-panel" href="https://play2048.co/" target="_blank" rel="noopener noreferrer" aria-label="Open 2048 in a new tab">
+        <strong>2048</strong>
+        <span>Open game in a new tab</span>
+      </a>
+      <div class="game-footer">
+        <a href="https://github.com/gabrielecirulli/2048" target="_blank" rel="noopener noreferrer">Source code</a>
+        <span class="license">Gabriele Cirulli · MIT License</span>
+      </div>
+    </article>
+    <article class="game">
+      <div class="game-heading"><h2>Ms. Pac-Man</h2><span class="game-number">02</span></div>
+      <a class="launch-panel" href="https://pacman.js.org/" target="_blank" rel="noopener noreferrer" aria-label="Open Ms. Pac-Man in a new tab">
+        <strong>MS. PAC-MAN</strong>
+        <span>Open game in a new tab</span>
+      </a>
+      <div class="game-footer">
+        <a href="https://github.com/8tentaculos/jsPacman" target="_blank" rel="noopener noreferrer">Source code</a>
+        <span class="license">jsPacman · MIT License</span>
+      </div>
+    </article>
+  </div>
+</main>
+<footer>Arcade · Games remain hosted by their open-source creators.</footer>
+</body>
+</html>
