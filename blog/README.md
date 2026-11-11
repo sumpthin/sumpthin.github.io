@@ -22,8 +22,10 @@ the post appears publicly after deployment finishes.
 ## One-time GitHub Pages setup
 
 In the repository settings, open **Pages** and set **Build and deployment →
-Source** to **GitHub Actions**. The included workflow then builds and deploys
-the site on pushes to `main`.
+Source** to **Deploy from a branch**, select `main` and `/(root)`. The included
+GitHub Actions workflow builds each post and commits the generated public
+listing and post pages to `blog/`. GitHub Pages serves those files from the
+branch.
 
 No separate password, personal access token, or third-party identity service is
 needed. GitHub checks whether the signed-in account has repository write

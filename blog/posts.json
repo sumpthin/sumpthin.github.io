@@ -1,5 +1,11 @@
 [
   {
+    "slug": "test-2",
+    "title": "Test 2",
+    "date": "2026-11-11",
+    "description": "A second test post to check that publishing works."
+  },
+  {
     "slug": "testing",
     "title": "Testing",
     "date": "2026-11-11",
