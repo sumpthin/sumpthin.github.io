@@ -11,6 +11,8 @@ const postsDir = path.join(rootDir, "content", "blog");
 const excludedDirectories = new Set([
   ".git",
   ".vscode",
+  ".github",
+  "admin",
   ".parcel-cache",
   "content",
   "dist",
@@ -18,7 +20,7 @@ const excludedDirectories = new Set([
   "scripts",
 ]);
 const excludedRootFiles = new Set([
-  "netlify.toml",
+  ".gitignore",
   "package-lock.json",
   "package.json",
 ]);
