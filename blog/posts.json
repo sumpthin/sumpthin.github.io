@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "slug": "testing",
+    "title": "Testing",
+    "date": "2026-11-11",
+    "description": "A test post to check that publishing works."
+  }
+]
