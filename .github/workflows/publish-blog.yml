@@ -4,6 +4,24 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      title:
+        description: Post title
+        required: true
+        type: string
+      date:
+        description: Publish date (YYYY-MM-DD)
+        required: true
+        type: string
+      summary:
+        description: Short summary shown on the blog page
+        required: true
+        type: string
+      body:
+        description: Article text in Markdown
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -28,6 +46,16 @@ jobs:
       - name: Install build dependencies
         run: npm ci
 
+      - name: Create blog post
+        if: github.event_name == 'workflow_dispatch'
+        id: post
+        run: node scripts/create-blog-post.mjs
+        env:
+          BLOG_TITLE: ${{ inputs.title }}
+          BLOG_DATE: ${{ inputs.date }}
+          BLOG_SUMMARY: ${{ inputs.summary }}
+          BLOG_BODY: ${{ inputs.body }}
+
       - name: Build site
         run: npm run build
 
@@ -38,6 +66,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            git add "${{ steps.post.outputs.path }}"
+          fi
           git add blog/posts.json blog/posts
           if ! git diff --cached --quiet; then
             git commit -m "Update generated blog pages"

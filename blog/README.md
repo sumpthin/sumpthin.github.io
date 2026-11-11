@@ -1,10 +1,14 @@
 # Blog publishing
 
 The public blog is generated from Markdown posts in `content/blog/`. To publish,
-sign in to GitHub with an account that has write access to this repository, then
-[create a Markdown file in `content/blog/`](https://github.com/sumpthin/sumpthin.github.io/new/main/content/blog).
-Use a lowercase, hyphen-separated filename such as `my-first-post.md` and this
-front matter:
+sign in to GitHub with an account that has write access to this repository,
+open [Publish a blog post](https://github.com/sumpthin/sumpthin.github.io/actions/workflows/publish-blog.yml),
+select **Run workflow**, and fill in the title, date, summary, and article. The
+workflow creates the Markdown file, builds the blog page, and publishes it.
+
+Alternatively, create a Markdown file directly in `content/blog/` with a
+lowercase, hyphen-separated filename such as `my-first-post.md` and this front
+matter:
 
 ```markdown
 ---
