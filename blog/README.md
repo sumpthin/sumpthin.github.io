@@ -6,9 +6,10 @@ open [Publish a blog post](https://github.com/sumpthin/sumpthin.github.io/action
 select **Run workflow**, and fill in the title, date, summary, and article. The
 workflow creates the Markdown file, builds the blog page, and publishes it.
 
-Alternatively, create a Markdown file directly in `content/blog/` with a
-lowercase, hyphen-separated filename such as `my-first-post.md` and this front
-matter:
+You can also create a Markdown file in `content/blog/` and commit it to `main`.
+The workflow runs automatically on each commit to `main` and publishes valid
+posts. Use a lowercase, hyphen-separated filename such as `my-first-post.md`
+and include all required front matter:
 
 ```markdown
 ---
@@ -22,6 +23,17 @@ Write the post here using Markdown.
 
 Commit the file to `main`. GitHub Actions builds and deploys the updated site;
 the post appears publicly after deployment finishes.
+
+## Add images
+
+Upload image files to [`blog/images/`](https://github.com/sumpthin/sumpthin.github.io/upload/main/blog/images).
+In your Markdown post, refer to each image relative to the generated post page:
+
+```markdown
+![A description of the image](../images/my-photo.jpg)
+```
+
+Commit the image and post to `main`; the automatic workflow publishes both.
 
 ## One-time GitHub Pages setup
 
