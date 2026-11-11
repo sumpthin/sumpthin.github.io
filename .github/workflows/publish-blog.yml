@@ -56,6 +56,9 @@ jobs:
           BLOG_SUMMARY: ${{ inputs.summary }}
           BLOG_BODY: ${{ inputs.body }}
 
+      - name: Convert plain-text blog files to posts
+        run: node scripts/normalize-blog-posts.mjs
+
       - name: Build site
         run: npm run build
 
@@ -66,9 +69,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            git add "${{ steps.post.outputs.path }}"
-          fi
+          git add -A -- content/blog
           git add blog/posts.json blog/posts
           if ! git diff --cached --quiet; then
             git commit -m "Update generated blog pages"
