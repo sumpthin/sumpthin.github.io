@@ -1,19 +1,13 @@
 # Blog publishing
 
-The public blog is generated from Markdown posts in `content/blog/`. To publish,
-sign in to GitHub with an account that has write access to this repository,
-open [Publish a blog post](https://github.com/sumpthin/sumpthin.github.io/actions/workflows/publish-blog.yml),
-select **Run workflow**, and fill in the title, date, summary, and article. The
-workflow creates the Markdown file, builds the blog page, and publishes it.
+Edit Markdown posts directly in [`content/blog/`](https://github.com/sumpthin/sumpthin.github.io/tree/main/content/blog),
+or [create a new Markdown post](https://github.com/sumpthin/sumpthin.github.io/new/main/content/blog).
+Commit changes to `main`; GitHub Actions automatically builds and publishes the
+blog. Open an existing `.md` file and choose the pencil icon to edit it. To add
+a post, create a new `.md` file with a lowercase, hyphen-separated filename,
+such as `my-first-post.md`.
 
-You can also create a plain text file directly in `content/blog/` and commit it
-to `main`. Every commit to `main` automatically runs the publishing workflow.
-For a plain text file such as `Test 3`, the filename becomes the post title,
-the first non-empty line becomes its summary, and the remaining text is the
-article. The workflow converts it to a Markdown post and publishes it.
-
-For more control, create a Markdown file with a lowercase, hyphen-separated
-filename such as `my-first-post.md` and include all required front matter:
+Each Markdown file starts with this front matter, followed by the post text:
 
 ```markdown
 ---
@@ -25,19 +19,26 @@ description: "A short summary shown on the blog page."
 Write the post here using Markdown.
 ```
 
-Commit the file or plain text post to `main`. GitHub Actions builds and
-publishes it automatically.
+Save and commit the Markdown file to `main`. The generated post will appear on
+the public blog after the automatic build completes.
 
 ## Add images
 
-Upload image files to [`blog/images/`](https://github.com/sumpthin/sumpthin.github.io/upload/main/blog/images).
-In your Markdown post, refer to each image relative to the generated post page:
+Upload images to [`blog/images/`](https://github.com/sumpthin/sumpthin.github.io/upload/main/blog/images).
+In the Markdown file, insert the image between paragraphs using a path relative
+to the generated post page:
 
 ```markdown
 ![A description of the image](../images/my-photo.jpg)
 ```
 
-Commit the image and post to `main`; the automatic workflow publishes both.
+For example, for `blog/images/lab-notes.jpg`, add
+`![Lab notes](../images/lab-notes.jpg)` to your post. Commit the image and
+Markdown file to `main`; the automatic workflow publishes both.
+
+If you prefer a form instead of editing Markdown, use the
+[guided publisher](https://github.com/sumpthin/sumpthin.github.io/actions/workflows/publish-blog.yml)
+and select **Run workflow**.
 
 ## One-time GitHub Pages setup
 
