@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6f8f7"/>
+      <stop offset="1" stop-color="#e4f0e9"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f7d5a"/>
+      <stop offset="1" stop-color="#236044"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="640" rx="36" fill="url(#background)"/>
+  <circle cx="1010" cy="125" r="115" fill="#d4e8db"/>
+  <circle cx="175" cy="505" r="130" fill="#d4e8db"/>
+  <rect x="215" y="115" width="770" height="410" rx="30" fill="url(#card)"/>
+  <path d="M325 360l105-105 85 85 100-120 150 175H365z" fill="#fff" opacity=".92"/>
+  <circle cx="737" cy="233" r="37" fill="#f3d9a8"/>
+  <text x="600" y="458" fill="#fff" font-family="Arial, sans-serif" font-size="35" font-weight="600" text-anchor="middle">Image loaded from blog/images</text>
+</svg>
